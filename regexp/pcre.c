@@ -1,9 +1,10 @@
 /*
- * gcc reg.c -o reg -lpcre
+ * gcc pcre.c -o pcrec -lpcre
  */
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <pcre.h>
+#include <pcre/pcre.h>
 
 int is_match (const char *src, const char *pattern)
 {
@@ -46,10 +47,14 @@ int is_match (const char *src, const char *pattern)
 	int
 main ( int argc, char *argv[] )
 {
-	const char *pattern = "((25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d?\\d)";
+	const char *pattern = "^((25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d?\\d)$";
 	const char *src = "5250.222.0.12";
+	const char *src1 = "127.0.0.1";
 
-	int result = is_match (src ,pattern);
-	printf ("result is: %d\n", result);
+	int result = is_match(src, pattern);
+	printf ("%s %s\n", src, result != 0? "not matched":"matched");
+	result = is_match(src1, pattern);
+	printf ("%s %s\n", src1, result != 0? "not matched":"matched");
+
 	return EXIT_SUCCESS;
 }				/* ----------  end of function main  ---------- */

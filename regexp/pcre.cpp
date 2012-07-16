@@ -1,9 +1,9 @@
 /*
- * g++ reg.cpp -o regcpp -lpcre
+ * g++ pcre.cpp -o pcrecpp -lpcre
  */
 #include	<iostream>
 #include	<string.h>
-#include	<pcre.h>
+#include	<pcre/pcre.h>
 
 bool is_match(const char *src, const char *pattern);
 bool is_ipaddr_legal(const char *src);
